@@ -35,9 +35,9 @@ namespace ElevatorSystem
             doorCloseTimer.Interval = 100; 
             doorCloseTimer.Tick += doorCloseTimer_Tick;
             Fy = leftDoor_1.Location.Y;
-            maxwidthopen = (float)(liftinterior.Width / 2);
+            maxwidthopen = (float)(liftinterior.Width / 3);
             Gy = leftDoor_G.Location.Y;
-            lift = new Lift(liftinterior,leftDoor_G,rightDoor_G,leftDoor_1,rightDoor_1,this.ClientSize.Height,liftspeed,Movingup,Movingdown,goUp,goDown,btnReq_1,btnReq_G,Fy,Gy,display1,displayG,Display);
+            lift = new Lift(liftinterior,openDoor,closeDoor,leftDoor_G,rightDoor_G,leftDoor_1,rightDoor_1,this.ClientSize.Height,liftspeed,Movingup,Movingdown,goUp,goDown,btnReq_1,btnReq_G,Fy,Gy,display1,displayG,Display);
             door = new Door(leftDoor_G, rightDoor_G, leftDoor_1, rightDoor_1, openDoor, closeDoor, doorspeed, doorOpenTimer, doorCloseTimer, maxwidthopen, goUp, goDown, btnReq_1, btnReq_G,liftinterior);
             liftData.ColumnCount = 3;
             liftData.Columns[0].Name = "Date";
@@ -57,7 +57,7 @@ namespace ElevatorSystem
         private void log(string message)
         {
             string currentTime = DateTime.Now.ToString("hh:mm:ss");
-            string currentDate = DateTime.Now.ToString("hh:mm:ss");
+            string currentDate = DateTime.Now.ToString("yyyy-MM-dd");
 
 
             dt.Rows.Add(currentDate,currentTime, message);
@@ -76,6 +76,9 @@ namespace ElevatorSystem
             Movingup.Start();
             btnReq_G.Enabled=false;
             goUp.Enabled=false;
+            btnReq_1.Enabled = false;
+            openDoor.Enabled=false;
+            closeDoor.Enabled=false;
             goDown.Enabled=false;
             log("Lift is arrriving at floor-1");
 
@@ -87,6 +90,9 @@ namespace ElevatorSystem
             lift.SetState(new MovingUpState());
             Movingup.Start();
             btnReq_G.Enabled = false;
+            btnReq_1.Enabled = false;
+            openDoor.Enabled = false;
+            closeDoor.Enabled = false;
             goUp.Enabled = false;
             goDown.Enabled = false;
             log("Lift is arrriving at floor-1");
@@ -97,7 +103,10 @@ namespace ElevatorSystem
         {
             lift.SetState(new MovingDownState());
             Movingdown.Start();
+            btnReq_G.Enabled = false;
             btnReq_1.Enabled = false;
+            openDoor.Enabled = false;
+            closeDoor.Enabled = false;
             goUp.Enabled = false;
             goDown.Enabled = false;
             log("Lift is arrriving at floor-G");
@@ -110,10 +119,12 @@ namespace ElevatorSystem
             {
                 door.SetState(new OpenDoor1());
                 doorOpenTimer.Start(); // Start the correct timer
-                leftDoor_1.Enabled = false;
-                leftDoor_G.Enabled = false;
-                goDown.Enabled = false;
+                btnReq_G.Enabled = false;
+                btnReq_1.Enabled = false;
+                openDoor.Enabled = false;
+                closeDoor.Enabled = false;
                 goUp.Enabled = false;
+                goDown.Enabled = false;
                 log("Floor-1 door is opening");
 
             }
@@ -121,10 +132,12 @@ namespace ElevatorSystem
             {
                 door.SetState(new OpenDoorG());
                 doorOpenTimer.Start(); // Start the correct timer
-                leftDoor_1.Enabled = false;
-                leftDoor_G.Enabled = false;
-                goDown.Enabled = false;
+                btnReq_G.Enabled = false;
+                btnReq_1.Enabled = false;
+                openDoor.Enabled = false;
+                closeDoor.Enabled = false;
                 goUp.Enabled = false;
+                goDown.Enabled = false;
                 log("Floor-G door is opening");
 
             }
@@ -144,7 +157,18 @@ namespace ElevatorSystem
 
         }
 
- 
+        private void main_Load(object sender, EventArgs e)
+        {
+            dbContext.loadLogsFromDB(dt, liftData);
+         Display.Text = $"G";
+   display1.Text = $"G";
+            displayG.Text = $"G";
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            dbContext.clearLogs(dt, liftData);
+        }
 
         private void closeDoor_Click(object sender, EventArgs e)
         {
@@ -152,21 +176,25 @@ namespace ElevatorSystem
             {
                 door.SetState(new CloseDoor1());
                 doorCloseTimer.Start(); // Start the correct timer for closing
-                leftDoor_1.Enabled = false;
-                leftDoor_G.Enabled = false;
+                btnReq_G.Enabled = false;
+                btnReq_1.Enabled = false;
+                openDoor.Enabled = false;
+                closeDoor.Enabled = false;
+                goUp.Enabled = false;
                 goDown.Enabled = false;
                 log("Floor-G door is closing");
 
-                goUp.Enabled = false;
             }
             else
             {
                 door.SetState(new CloseDoorG());
                 doorCloseTimer.Start(); // Start the correct timer for closing
-                leftDoor_1.Enabled = false;
-                leftDoor_G.Enabled = false;
-                goDown.Enabled = false;
+                btnReq_G.Enabled = false;
+                btnReq_1.Enabled = false;
+                openDoor.Enabled = false;
+                closeDoor.Enabled = false;
                 goUp.Enabled = false;
+                goDown.Enabled = false;
                 log("Floor-G door is closing");
 
             }

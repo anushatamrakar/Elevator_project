@@ -37,11 +37,16 @@ namespace ElevatorSystem.Interface
                 //lift.FirstFloor.BackColor = Color.White;
                 lift.Movingup.Stop();
                 lift.currentFloor = 1;
-                lift.RequestdownG.Enabled = true;
+                lift.Requestup1.Enabled = true;
                 lift.Movingup1.Enabled = true;
                 lift.MovingdownG.Enabled = true;
+                lift.RequestdownG.Enabled = true;
+                lift.btnClose.Enabled = true;
+                lift.btnOpen.Enabled = true;
                 // Update displays and disable/enable buttons accordingly
                 lift.display.Text = $"1";
+                lift.btnOpen.PerformClick();
+
                 lift.display1.Text = $"1";
                 lift.displayG.Text = $"1";
             }

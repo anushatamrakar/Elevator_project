@@ -25,10 +25,12 @@ namespace ElevatorSystem.Interface
             {
                 door.OpenTimer.Stop();
                 door._currentstate = new RestDoor();
-                door.Movingup1.Enabled = true;
-                door.MovingdownG.Enabled = true;
-                door.RequestdownG.Enabled = true;
-                door.Requestup1.Enabled = true;
+                door.Movingup1.Enabled = false;
+                door.MovingdownG.Enabled = false;
+                door.RequestdownG.Enabled = false;
+                door.Requestup1.Enabled = false;
+                door.btnOpen.Enabled = false;
+                door.btnClose.Enabled = true;
             }
         }
     }

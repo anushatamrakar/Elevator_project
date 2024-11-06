@@ -51,6 +51,9 @@
             this.doorOpenTimer = new System.Windows.Forms.Timer(this.components);
             this.doorCloseTimer = new System.Windows.Forms.Timer(this.components);
             this.liftData = new System.Windows.Forms.DataGridView();
+            this.pictureBox2 = new System.Windows.Forms.PictureBox();
+            this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.button1 = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.liftinterior)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.leftDoor_1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.leftDoor_G)).BeginInit();
@@ -58,6 +61,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.rightDoor_1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.liftData)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
             this.SuspendLayout();
             // 
             // liftinterior
@@ -113,8 +118,9 @@
             // pictureBox1
             // 
             this.pictureBox1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.pictureBox1.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox1.BackgroundImage")));
             this.pictureBox1.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox1.Image")));
-            this.pictureBox1.Location = new System.Drawing.Point(-11, 12);
+            this.pictureBox1.Location = new System.Drawing.Point(-11, -10);
             this.pictureBox1.Name = "pictureBox1";
             this.pictureBox1.Size = new System.Drawing.Size(921, 522);
             this.pictureBox1.TabIndex = 7;
@@ -241,16 +247,48 @@
             // liftData
             // 
             this.liftData.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.liftData.Location = new System.Drawing.Point(0, 0);
+            this.liftData.Location = new System.Drawing.Point(0, 39);
             this.liftData.Name = "liftData";
-            this.liftData.Size = new System.Drawing.Size(324, 445);
+            this.liftData.Size = new System.Drawing.Size(373, 445);
             this.liftData.TabIndex = 19;
+            // 
+            // pictureBox2
+            // 
+            this.pictureBox2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox2.BackgroundImage")));
+            this.pictureBox2.Location = new System.Drawing.Point(401, 12);
+            this.pictureBox2.Name = "pictureBox2";
+            this.pictureBox2.Size = new System.Drawing.Size(289, 194);
+            this.pictureBox2.TabIndex = 20;
+            this.pictureBox2.TabStop = false;
+            // 
+            // pictureBox3
+            // 
+            this.pictureBox3.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("pictureBox3.BackgroundImage")));
+            this.pictureBox3.Location = new System.Drawing.Point(401, 244);
+            this.pictureBox3.Name = "pictureBox3";
+            this.pictureBox3.Size = new System.Drawing.Size(289, 194);
+            this.pictureBox3.TabIndex = 21;
+            this.pictureBox3.TabStop = false;
+            // 
+            // button1
+            // 
+            this.button1.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.button1.Location = new System.Drawing.Point(0, 4);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(88, 29);
+            this.button1.TabIndex = 22;
+            this.button1.Text = "Clear";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(892, 450);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.leftDoor_G);
+            this.Controls.Add(this.leftDoor_1);
             this.Controls.Add(this.liftData);
             this.Controls.Add(this.Display);
             this.Controls.Add(this.goUp);
@@ -263,13 +301,14 @@
             this.Controls.Add(this.btnReq_1);
             this.Controls.Add(this.display1);
             this.Controls.Add(this.rightDoor_G);
-            this.Controls.Add(this.leftDoor_G);
             this.Controls.Add(this.rightDoor_1);
-            this.Controls.Add(this.leftDoor_1);
             this.Controls.Add(this.liftinterior);
+            this.Controls.Add(this.pictureBox2);
+            this.Controls.Add(this.pictureBox3);
             this.Controls.Add(this.pictureBox1);
             this.Name = "main";
             this.Text = "Form1";
+            this.Load += new System.EventHandler(this.main_Load);
             ((System.ComponentModel.ISupportInitialize)(this.liftinterior)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.leftDoor_1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.leftDoor_G)).EndInit();
@@ -277,6 +316,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.rightDoor_1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.liftData)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -304,6 +345,9 @@
         private System.Windows.Forms.Timer open;
         private System.Windows.Forms.Timer close;
         private System.Windows.Forms.DataGridView liftData;
+        private System.Windows.Forms.PictureBox pictureBox2;
+        private System.Windows.Forms.PictureBox pictureBox3;
+        private System.Windows.Forms.Button button1;
     }
 }
 

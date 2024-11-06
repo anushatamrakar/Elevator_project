@@ -29,7 +29,6 @@ namespace ElevatorSystem.Storage
                         adapter.InsertCommand = new SqlCommand(query, conn);
                         adapter.InsertCommand.Parameters.Add("@Date", SqlDbType.DateTime, 0, "Date");
                         adapter.InsertCommand.Parameters.Add("@Time", SqlDbType.DateTime, 0, "Time");
-
                         adapter.InsertCommand.Parameters.Add("@Event", SqlDbType.NVarChar, 255, "Event");
 
                         conn.Open();
@@ -50,7 +49,7 @@ namespace ElevatorSystem.Storage
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 {
-                    string query = @"Select Date,Time, Event from logs";
+                    string query = @"Select Date,Time, Event from lift  order by Time ;";
 
                     using (SqlDataAdapter adapter = new SqlDataAdapter(query, conn))
                     {
@@ -78,7 +77,32 @@ namespace ElevatorSystem.Storage
             }
 
         }
+        public void clearLogs(DataTable dt, DataGridView dataGridViewLogs)
+        {
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionString))
+                {
+                    string query = @"Truncate table lift;";
 
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(query, conn))
+                    {
+                        loadLogsFromDB(dt, dataGridViewLogs);
+                        dt.Rows.Clear();
+
+                        adapter.Fill(dt);
+
+                        dataGridViewLogs.Rows.Clear();
+                        MessageBox.Show("Table cleared successfully");
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error loading logs from DB: " + ex.Message);
+            }
+
+        }
 
     }
 }

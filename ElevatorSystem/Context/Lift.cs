@@ -18,6 +18,8 @@ namespace ElevatorSystem.Context
         public PictureBox LeftDoor1;
         public PictureBox RightDoor1;
         public int FSize;
+        public Button btnOpen,btnClose;
+
         public int LiftSpeed;
         public Timer Movingup, Movingdown;
         public Button Movingup1, MovingdownG, Requestup1, RequestdownG;
@@ -25,8 +27,10 @@ namespace ElevatorSystem.Context
         public Button display1, displayG, display;
         public int currentFloor = 0;
         //create constructor
-        public Lift(PictureBox Interior, PictureBox leftdoorG, PictureBox rightdoorG, PictureBox leftdoor1, PictureBox rightdoor1, int fsize, int liftspeed, Timer movingup, Timer movingdown, Button movingup1, Button movingdownG, Button requestup1, Button requestdownG, int Fy, int Gy, Button Display1, Button DisplayG, Button Display)
+        public Lift(PictureBox Interior,Button open, Button close,PictureBox leftdoorG, PictureBox rightdoorG, PictureBox leftdoor1, PictureBox rightdoor1, int fsize, int liftspeed, Timer movingup, Timer movingdown, Button movingup1, Button movingdownG, Button requestup1, Button requestdownG, int Fy, int Gy, Button Display1, Button DisplayG, Button Display)
         {
+            btnOpen = open;
+            btnClose = close;
             interior= Interior;
             LeftDoorG= leftdoorG;
             RightDoorG= rightdoorG;

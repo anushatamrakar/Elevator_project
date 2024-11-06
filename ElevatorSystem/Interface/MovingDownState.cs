@@ -30,11 +30,15 @@ namespace ElevatorSystem.Interface
                 lift.Requestup1.Enabled = true;
                 lift.Movingup1.Enabled = true;
                 lift.MovingdownG.Enabled = true;
+                lift.RequestdownG.Enabled = true;   
+                lift.btnClose.Enabled = true;
+                lift.btnOpen.Enabled = true;
                 lift.currentFloor=0;
                 // Update displays and disable/enable buttons accordingly
                 lift.display.Text = $"G";
                 lift.display1.Text = $"G";
                 lift.displayG.Text = $"G";
+                lift.btnOpen.PerformClick();
 
             }
         }
